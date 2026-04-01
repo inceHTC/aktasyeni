@@ -22,7 +22,7 @@ const categories = [
 ];
 
 const stats = [
-  { value: "25+", label: "Yıllık Deneyim" },
+  { value: "30+", label: "Yıllık Deneyim" },
   { value: "150+", label: "Ürün Çeşidi" },
   { value: "81", label: "İle Kargo" },
   { value: "100%", label: "Doğal İçerik" },
