@@ -42,7 +42,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 h-full flex items-center">
             <Image
-              src="/assets/img/logos.png"
+              src="/assets/img/logo1.png"
               alt="Aktaş Peynircilik"
               width={90}
               height={90}
