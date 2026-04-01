@@ -140,9 +140,10 @@ export default function Navbar() {
             </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-white"
+              className="text-white relative z-50 flex items-center justify-center"
+              style={{ width: 44, height: 44, touchAction: "manipulation" }}
             >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </div>
