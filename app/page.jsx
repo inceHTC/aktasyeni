@@ -68,7 +68,7 @@ export default function HomePage() {
       {/* ── HERO – Split Layout ── */}
       <section
         className="relative flex flex-col lg:flex-row overflow-hidden"
-        style={{ minHeight: "580px", backgroundColor: "#1A1A1A" }}
+        style={{ minHeight: "680px", backgroundColor: "#1A1A1A" }}
       >
         {/* Left – Content */}
         <div
@@ -124,7 +124,8 @@ export default function HomePage() {
             src="/assets/img/kiz.jpg"
             alt="Aktaş Peynircilik"
             fill
-            className="object-cover object-top"
+            className="object-cover"
+            style={{ objectPosition: "50% 20%" }}
             priority
             sizes="(max-width: 1024px) 100vw, 52vw"
           />
