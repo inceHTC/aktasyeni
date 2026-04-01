@@ -7,9 +7,23 @@ import { Toaster } from "@/components/ui/sonner";
 export const metadata = {
   title: "Aktaş Peynircilik | Biga, Çanakkale",
   description:
-    "Aktaş Peynircilik — Biga'dan doğal ve taze peynir, zeytin, zeytinyağı, bal ve şarküteri ürünleri.",
+    "Aktaş Peynircilik — Biga'dan doğal ve taze peynir, zeytin, zeytinyağı, bal ve şarküteri ürünleri. Üreticiden kapınıza, katkısız ve taze.",
   keywords:
-    "peynir, zeytin, zeytinyağı, tereyağı, bal, şarküteri, biga, çanakkale, aktaş peynircilik",
+    "peynir, ezine peyniri, beyaz peynir, zeytin, zeytinyağı, tereyağı, bal, sucuk, şarküteri, biga, çanakkale, aktaş peynircilik, doğal ürünler, kargo",
+  metadataBase: new URL("https://www.aktaspeynirbiga.com.tr"),
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
+  openGraph: {
+    title: "Aktaş Peynircilik | Biga, Çanakkale",
+    description:
+      "Üreticiden sofranıza — doğal peynir, zeytin, zeytinyağı ve şarküteri ürünleri. Türkiye geneline kargo.",
+    url: "https://www.aktaspeynirbiga.com.tr",
+    siteName: "Aktaş Peynircilik",
+    locale: "tr_TR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
