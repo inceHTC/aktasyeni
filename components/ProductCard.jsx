@@ -10,6 +10,7 @@ export default function ProductCard({ product, showAddToCart = true }) {
   const router = useRouter();
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   const handleAdd = (e) => {
     e.stopPropagation();
@@ -55,16 +56,21 @@ export default function ProductCard({ product, showAddToCart = true }) {
 
       {/* Image */}
       <div
-        className="relative w-full overflow-hidden"
+        className="relative w-full overflow-hidden flex items-center justify-center"
         style={{ aspectRatio: "1/1", backgroundColor: "#F5F2EB" }}
       >
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-cover transition-transform duration-400 group-hover:scale-[1.06]"
-          sizes="(max-width: 768px) 50vw, 25vw"
-        />
+        {product.image && !imgError ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover transition-transform duration-400 group-hover:scale-[1.06]"
+            sizes="(max-width: 768px) 50vw, 25vw"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <span className="text-4xl select-none">🧀</span>
+        )}
       </div>
 
       {/* Content */}

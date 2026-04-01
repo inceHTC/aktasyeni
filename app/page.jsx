@@ -59,6 +59,7 @@ export default function HomePage() {
     });
   }, []);
 
+  const loading = products.length === 0;
   const featured = products.filter((p) => p.featured).slice(0, 8);
   const campaigns = products.filter((p) => p.isCampaign).slice(0, 4);
 
@@ -223,44 +224,49 @@ export default function HomePage() {
       </section>
 
       {/* ── Featured Products ── */}
-      {featured.length > 0 && (
-        <section className="py-20" style={{ backgroundColor: "#F5F2EB" }}>
-          <div className="container mx-auto px-4">
-            <div className="flex items-end justify-between mb-12">
-              <div>
-             
-                <h2
-                  className="text-2xl font-bold"
-                  style={{ fontFamily: "'Playfair Display', serif", color: "#1A1A1A" }}
-                >
-                  Öne Çıkan Ürünler
-                </h2>
-              </div>
-              <Link
-                href="/products"
-                className="text-sm font-semibold hidden sm:block"
-                style={{ color: "#1A1A1A", borderBottom: "1px solid #1A1A1A", paddingBottom: "2px" }}
+      <section className="py-20" style={{ backgroundColor: "#F5F2EB" }}>
+        <div className="container mx-auto px-4">
+          <div className="flex items-end justify-between mb-12">
+            <div>
+              <h2
+                className="text-2xl font-bold"
+                style={{ fontFamily: "'Playfair Display', serif", color: "#1A1A1A" }}
               >
-                Tümünü Gör →
-              </Link>
+                Öne Çıkan Ürünler
+              </h2>
             </div>
+            <Link
+              href="/products"
+              className="text-sm font-semibold hidden sm:block"
+              style={{ color: "#1A1A1A", borderBottom: "1px solid #1A1A1A", paddingBottom: "2px" }}
+            >
+              Tümünü Gör →
+            </Link>
+          </div>
+          {loading ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="rounded-2xl bg-white animate-pulse" style={{ height: "280px" }} />
+              ))}
+            </div>
+          ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
               {featured.map((prod) => (
                 <ProductCard key={prod.id} product={prod} showAddToCart={false} />
               ))}
             </div>
-            <div className="text-center mt-8 sm:hidden">
-              <Link
-                href="/products"
-                className="inline-block px-6 py-3 rounded-xl text-sm font-semibold border"
-                style={{ borderColor: "#1A1A1A", color: "#1A1A1A" }}
-              >
-                Tüm Ürünler →
-              </Link>
-            </div>
+          )}
+          <div className="text-center mt-8 sm:hidden">
+            <Link
+              href="/products"
+              className="inline-block px-6 py-3 rounded-xl text-sm font-semibold border"
+              style={{ borderColor: "#1A1A1A", color: "#1A1A1A" }}
+            >
+              Tüm Ürünler →
+            </Link>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* ── Promise / Why Us ── */}
       <section className="py-20" style={{ backgroundColor: "#1A1A1A" }}>
