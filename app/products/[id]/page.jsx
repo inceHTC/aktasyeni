@@ -115,7 +115,7 @@ export default function ProductDetailPage({ params }) {
             />
             {product.isCampaign && (
               <div
-                className="absolute top-4 left-4 px-3 py-1 rounded-lg text-xs font-bold text-white uppercase tracking-wider"
+                className="absolute top-4 left-4 px-3 py-1 rounded-lg text-xs font-bold text-white  tracking-wider"
                 style={{ backgroundColor: "#C0392B" }}
               >
                 indirim
@@ -170,7 +170,7 @@ export default function ProductDetailPage({ params }) {
               {product.inStock ? (
                 <button
                   onClick={handleAdd}
-                  className="flex-1 py-4 rounded-2xl font-bold text-sm text-white  tracking-wider flex items-center justify-center gap-2 transition-all duration-200"
+                  className="flex-1 py-4 rounded-2xl font-bold text-sm text-white  tracking-wider flex items-center justify-center gap-4 transition-all duration-200"
                   style={{ backgroundColor: added ? "#276227" : "#2B4A1F" }}
                   onMouseEnter={(e) => !added && (e.currentTarget.style.backgroundColor = "#1e3a14")}
                   onMouseLeave={(e) => !added && (e.currentTarget.style.backgroundColor = "#2B4A1F")}
