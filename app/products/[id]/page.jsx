@@ -118,7 +118,7 @@ export default function ProductDetailPage({ params }) {
                 className="absolute top-4 left-4 px-3 py-1 rounded-lg text-xs font-bold text-white uppercase tracking-wider"
                 style={{ backgroundColor: "#C0392B" }}
               >
-                Kampanya
+                indirim
               </div>
             )}
           </div>
@@ -170,7 +170,7 @@ export default function ProductDetailPage({ params }) {
               {product.inStock ? (
                 <button
                   onClick={handleAdd}
-                  className="flex-1 py-4 rounded-2xl font-bold text-sm text-white uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200"
+                  className="flex-1 py-4 rounded-2xl font-bold text-sm text-white  tracking-wider flex items-center justify-center gap-2 transition-all duration-200"
                   style={{ backgroundColor: added ? "#276227" : "#2B4A1F" }}
                   onMouseEnter={(e) => !added && (e.currentTarget.style.backgroundColor = "#1e3a14")}
                   onMouseLeave={(e) => !added && (e.currentTarget.style.backgroundColor = "#2B4A1F")}
@@ -188,7 +188,7 @@ export default function ProductDetailPage({ params }) {
               )}
               <Link
                 href="/cart"
-                className="py-4 px-6 rounded-2xl font-semibold text-sm text-white text-center uppercase tracking-wider transition-all duration-200"
+                className="py-4 px-6 rounded-2xl font-semibold text-sm text-white text-center  tracking-wider transition-all duration-200"
                 style={{ backgroundColor: "#C9963F" }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#A87B2A")}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#C9963F")}

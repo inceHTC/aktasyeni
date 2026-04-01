@@ -46,10 +46,10 @@ export default function ProductCard({ product, showAddToCart = true }) {
       {/* Campaign Badge */}
       {product.isCampaign && (
         <div
-          className="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-xs font-bold text-white uppercase tracking-wider"
+          className="absolute top-3 left-3 z-10 px-2 py-0.5 rounded-md text-xs font-bold text-white  tracking-wider"
           style={{ backgroundColor: "#C0392B" }}
         >
-          Kampanya
+          indirim
         </div>
       )}
 
@@ -103,7 +103,7 @@ export default function ProductCard({ product, showAddToCart = true }) {
             {product.inStock ? (
               <button
                 onClick={handleAdd}
-                className="w-full py-2 rounded-xl text-xs font-semibold text-white uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all duration-200"
+                className="w-full py-2 rounded-xl text-xs font-semibold text-white  tracking-wider flex items-center justify-center gap-1.5 transition-all duration-200"
                 style={{
                   backgroundColor: added ? "#276227" : "#2B4A1F",
                   transform: added ? "scale(1.03)" : "scale(1)",

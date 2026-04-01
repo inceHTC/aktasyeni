@@ -43,25 +43,27 @@ export default function CartPage() {
 
     const rows = cart
       .map((item) => {
-        const w = item.weight < 1 ? `${Math.round(item.weight * 1000)}gr` : `${item.weight}kg`;
+        const w = item.weight < 1 ? `${Math.round(item.weight * 1000)} gr` : `${item.weight} kg`;
         const price = item.isCampaign ? item.newPrice : item.price;
-        return `• ${item.name} (${w}) — ${item.quantity} adet — ₺${price * item.quantity}`;
+        return `${item.name}   ${item.quantity} x ${w} ${price * item.quantity} TL\n-------------------------`;
       })
       .join("\n");
 
-    const fullAddress = `${selectedCity} / ${selectedDistrict}${building ? " / " + building : ""} / ${address}`;
+    const fullAddress = [selectedCity, selectedDistrict, building, address].filter(Boolean).join(" / ");
 
     const message =
-      `Merhaba, sipariş vermek istiyorum 🛒\n\n` +
-      `📦 Sipariş No: ${orderId}\n\n` +
+      `Merhaba, sipariş vermek istiyorum:\n\n` +
+      `Sipariş No: ${orderId}\n\n` +
+      `Ürün Adı              Adet           Fiyat\n` +
+      `----------------------------------\n` +
       rows +
       `\n\n` +
-      `💰 Ürün Toplamı: ₺${totalPrice}\n` +
-      `🚚 Kargo: ₺${shippingFee}\n` +
-      `💳 Genel Toplam: ₺${totalPrice + shippingFee}\n\n` +
-      `👤 Ad Soyad: ${fullName}\n` +
-      `🪪 T.C. No: ${tcNo}\n` +
-      `📍 Adres: ${fullAddress}`;
+      `Ürün Toplamı: ${totalPrice} TL\n` +
+      `Kargo: ${shippingFee} TL\n` +
+      `Genel Toplam: ${totalPrice + shippingFee} TL\n\n` +
+      `Adı Soyadı: ${fullName}\n` +
+      `TC No: ${tcNo}\n` +
+      `Adres: ${fullAddress}`;
 
     window.open(`https://wa.me/905374835469?text=${encodeURIComponent(message)}`, "_blank");
   };
