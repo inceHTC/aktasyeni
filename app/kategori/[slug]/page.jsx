@@ -13,8 +13,7 @@ const LABELS = {
   zeytinyagi: "Zeytinyağı",
   tereyagi: "Tereyağı",
   sarkuteri: "Şarküteri",
-  bal: "Bal & Reçel",
-  "kuru-gida": "Kuru Gıdalar",
+  "kuru-gida": "Kuru Gıda & Bal",
 };
 
 const DESCRIPTIONS = {
@@ -23,8 +22,7 @@ const DESCRIPTIONS = {
   zeytinyagi: "Soğuk sıkım, naturel sızma — Çanakkale zeytinlerinin en saf hali.",
   tereyagi: "Yöresel inek sütünden üretilen, katkısız doğal tereyağı.",
   sarkuteri: "Kendi üretimimiz olan doğal sucuk ve seçkin şarküteri ürünleri.",
-  bal: "Biga yöresinden süzme ballar ve ev yapımı mevsim reçelleri.",
-  "kuru-gida": "Pirinç, mercimek, tarhana, erişte ve daha fazlası — yöresel kuru gıdalar.",
+  "kuru-gida": "Pirinç, mercimek, tarhana, erişte, Biga yöresinden süzme ballar ve mevsim reçelleri.",
 };
 
 // kuru-gida <-> kurugida gibi tire farkını normalize et
@@ -38,7 +36,11 @@ export default function CategoryPage({ params }) {
   useEffect(() => {
     getDocs(collection(db, "products")).then((snap) => {
       const all = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      setProducts(all.filter((p) => normalizeSlug(p.category) === normalizeSlug(slug)));
+      const slugNorm = normalizeSlug(slug);
+      const merged = slugNorm === "kurugida"
+        ? all.filter((p) => normalizeSlug(p.category) === "kurugida" || normalizeSlug(p.category) === "bal")
+        : all.filter((p) => normalizeSlug(p.category) === slugNorm);
+      setProducts(merged);
       setLoading(false);
     });
   }, [slug]);

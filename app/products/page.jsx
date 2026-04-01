@@ -14,8 +14,7 @@ const CATEGORY_LABELS = {
   zeytinyagi: "Zeytinyağı",
   tereyagi: "Tereyağı",
   sarkuteri: "Şarküteri",
-  bal: "Bal & Reçel",
-  "kuru-gida": "Kuru Gıdalar",
+  "kuru-gida": "Kuru Gıda & Bal",
 };
 
 const normalizeSlug = (s) => s?.replace(/-/g, "").toLowerCase();
@@ -34,7 +33,12 @@ export default function ProductsPage() {
   }, []);
 
   const filtered = products.filter((p) => {
-    const matchCat = category === "all" || normalizeSlug(p.category) === normalizeSlug(category);
+    const catNorm = normalizeSlug(p.category);
+    const matchCat =
+      category === "all" ||
+      (normalizeSlug(category) === "kurugida"
+        ? catNorm === "kurugida" || catNorm === "bal"
+        : catNorm === normalizeSlug(category));
     const matchSearch = p.name?.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
   });

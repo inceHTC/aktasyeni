@@ -17,8 +17,7 @@ const categories = [
   { name: "Zeytinyağı", icon: <FaWineBottle size={28} />, path: "/kategori/zeytinyagi" },
   { name: "Tereyağı", icon: <GiButter size={28} />, path: "/kategori/tereyagi" },
   { name: "Şarküteri", icon: <GiSausage size={28} />, path: "/kategori/sarkuteri" },
-  { name: "Bal & Reçel", icon: <GiHoneyJar size={28} />, path: "/kategori/bal" },
-  { name: "Kuru Gıdalar", icon: <GiMeal size={28} />, path: "/kategori/kuru-gida" },
+  { name: "Kuru Gıda & Bal", icon: <GiMeal size={28} />, path: "/kategori/kuru-gida" },
 ];
 
 const stats = [

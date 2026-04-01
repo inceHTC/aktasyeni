@@ -18,8 +18,7 @@ const menuItems = [
       { name: "Zeytinyağı", path: "/kategori/zeytinyagi" },
       { name: "Tereyağı", path: "/kategori/tereyagi" },
       { name: "Şarküteri", path: "/kategori/sarkuteri" },
-      { name: "Bal & Reçel", path: "/kategori/bal" },
-      { name: "Kuru Gıdalar", path: "/kategori/kuru-gida" },
+      { name: "Kuru Gıda & Bal", path: "/kategori/kuru-gida" },
     ],
   },
   { name: "Kampanyalar", path: "/kampanyalar" },
@@ -58,8 +57,8 @@ export default function Navbar() {
               alt="Aktaş Peynircilik"
               width={220}
               height={80}
-              className="object-contain"
-              style={{ maxHeight: "80px", width: "auto" }}
+              className="object-contain w-[150px] sm:w-[190px] lg:w-[220px]"
+              style={{ maxHeight: "80px" }}
             />
           </Link>
 
