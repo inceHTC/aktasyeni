@@ -33,7 +33,7 @@ export default function ContactPage() {
         className="text-white text-center py-20 px-4"
         style={{ background: "linear-gradient(135deg, #2B4A1F 0%, #1A1A1A 100%)" }}
       >
-        <h1 className="text-4xl font-bold mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <h1 className="text-4xl font-bold mb-3" style={{ fontFamily: "'Playfair Display', serif", color: "#C9963F" }}>
           İletişim
         </h1>
         <p className="text-white/70 text-base">Sorularınız için bize ulaşın</p>
@@ -52,7 +52,7 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-2 gap-10">
             {/* Info */}
             <div>
-              <h2 className="text-2xl font-semibold mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <h2 className="text-2xl font-semibold mb-8" style={{ fontFamily: "'Playfair Display', serif", color: "#000" }}>
                 Bize Ulaşın
               </h2>
               <div className="flex flex-col gap-5">
