@@ -55,21 +55,18 @@ export default function ProductCard({ product, showAddToCart = true }) {
       )}
 
       {/* Image */}
-      <div
-        className="relative w-full overflow-hidden flex items-center justify-center"
-        style={{ aspectRatio: "1/1", backgroundColor: "#F5F2EB" }}
-      >
+      <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%", backgroundColor: "#E8E4DC" }}>
         {product.image && !imgError ? (
-          <Image
+          <img
             src={product.image}
             alt={product.name}
-            fill
-            className="object-cover transition-transform duration-400 group-hover:scale-[1.06]"
-            sizes="(max-width: 768px) 50vw, 25vw"
             onError={() => setImgError(true)}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-400 group-hover:scale-[1.06]"
           />
         ) : (
-          <span className="text-4xl select-none">🧀</span>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-4xl select-none">🧀</span>
+          </div>
         )}
       </div>
 
