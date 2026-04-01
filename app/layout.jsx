@@ -12,8 +12,8 @@ export const metadata = {
     "peynir, ezine peyniri, beyaz peynir, zeytin, zeytinyağı, tereyağı, bal, sucuk, şarküteri, biga, çanakkale, aktaş peynircilik, doğal ürünler, kargo",
   metadataBase: new URL("https://www.aktaspeynirbiga.com.tr"),
   icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
     title: "Aktaş Peynircilik | Biga, Çanakkale",
@@ -30,7 +30,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="tr">
       <head>
-        <link rel="icon" href="/icon.png" />
+        <link rel="icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
       </head>
       <body>
         <CartProvider>
