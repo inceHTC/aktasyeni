@@ -57,11 +57,14 @@ export default function ProductCard({ product, showAddToCart = true }) {
       {/* Image */}
       <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%", backgroundColor: "#E8E4DC" }}>
         {product.image && !imgError ? (
-          <img
+          <Image
             src={product.image}
             alt={product.name}
+            fill
+            unoptimized
+            className="absolute object-cover transition-transform duration-400 group-hover:scale-[1.06]"
+            sizes="(max-width: 768px) 50vw, 25vw"
             onError={() => setImgError(true)}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-400 group-hover:scale-[1.06]"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
