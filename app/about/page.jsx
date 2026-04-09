@@ -68,7 +68,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative rounded-3xl overflow-hidden shadow-lg" style={{ aspectRatio: "4/3" }}>
-              <Image src="/assets/img/dukkan1.jpg" alt="Aktaş Peynircilik" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+              <Image src="/assets/img/dukkan1.jpg" alt="Aktaş Peynircilik" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" quality={75} loading="lazy" />
             </div>
           </div>
         </div>

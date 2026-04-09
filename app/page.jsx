@@ -190,7 +190,9 @@ export default function HomePage() {
           alt="Aktaş Peynircilik Ürünleri"
           fill
           className="object-cover"
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, 100vw"
+          quality={75}
+          loading="lazy"
         />
         <div
           className="absolute inset-0 flex items-center"
