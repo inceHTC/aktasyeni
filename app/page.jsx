@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { db } from "@/lib/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { useProducts } from "@/context/ProductsContext";
 import ProductCard from "@/components/ProductCard";
 import CategoryCard from "@/components/CategoryCard";
-import { FaCheese, FaWineBottle, FaTruck, FaBoxOpen, FaCertificate, FaWhatsapp, FaStar } from "react-icons/fa";
-import { GiOlive, GiMeal, GiSausage, GiButter, GiHoneyJar } from "react-icons/gi";
+import { FaCheese, FaWineBottle, FaWhatsapp } from "react-icons/fa";
+import { GiOlive, GiMeal, GiSausage, GiButter } from "react-icons/gi";
 import { ShieldCheck, Leaf, Award, MapPin } from "lucide-react";
 
 const categories = [
@@ -51,15 +49,9 @@ const promises = [
 ];
 
 export default function HomePage() {
-  const [products, setProducts] = useState([]);
+  const { products, loaded } = useProducts();
 
-  useEffect(() => {
-    getDocs(collection(db, "products")).then((snap) => {
-      setProducts(snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-    });
-  }, []);
-
-  const loading = products.length === 0;
+  const loading = !loaded;
   const featured = products.filter((p) => p.featured).slice(0, 8);
   const campaigns = products.filter((p) => p.isCampaign).slice(0, 4);
 

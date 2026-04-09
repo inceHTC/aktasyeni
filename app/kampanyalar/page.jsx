@@ -1,23 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { db } from "@/lib/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { useProducts } from "@/context/ProductsContext";
 import ProductCard from "@/components/ProductCard";
-import { Tag, ArrowLeft, ChevronRight } from "lucide-react";
+import { Tag, ArrowLeft } from "lucide-react";
 
 export default function KampanyalarPage() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getDocs(collection(db, "products")).then((snap) => {
-      const all = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      setProducts(all.filter((p) => p.isCampaign));
-      setLoading(false);
-    });
-  }, []);
+  const { products, loaded } = useProducts();
+  const campaigns = products.filter((p) => p.isCampaign);
 
   return (
     <div style={{ backgroundColor: "#FAFAF8", minHeight: "100vh" }}>
@@ -49,19 +39,19 @@ export default function KampanyalarPage() {
 
       <section className="pb-16">
         <div className="container mx-auto px-4">
-          {loading ? (
+          {!loaded ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
               {Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="rounded-2xl bg-white animate-pulse" style={{ height: "280px" }} />
               ))}
             </div>
-          ) : products.length === 0 ? (
+          ) : campaigns.length === 0 ? (
             <div className="text-center py-20">
               <p style={{ color: "#9CA3AF" }}>Şu anda aktif kampanya bulunmuyor.</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
-              {products.map((prod) => (
+              {campaigns.map((prod) => (
                 <ProductCard key={prod.id} product={prod} />
               ))}
             </div>

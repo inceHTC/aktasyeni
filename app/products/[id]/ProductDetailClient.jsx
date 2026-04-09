@@ -1,10 +1,10 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
-import { db } from "@/lib/firebase";
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { use } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useProducts } from "@/context/ProductsContext";
 import { useCart } from "@/context/CartContext";
 import ProductCard from "@/components/ProductCard";
 import { ShoppingCart, Check, ArrowLeft } from "lucide-react";
@@ -12,27 +12,14 @@ import { toast } from "sonner";
 
 export default function ProductDetailClient({ params }) {
   const { id } = use(params);
+  const { products, loaded } = useProducts();
   const { addToCart } = useCart();
-  const [product, setProduct] = useState(null);
-  const [related, setRelated] = useState([]);
   const [added, setAdded] = useState(false);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const docSnap = await getDoc(doc(db, "products", id));
-      if (!docSnap.exists()) { setLoading(false); return; }
-      const p = { id: docSnap.id, ...docSnap.data() };
-      setProduct(p);
-
-      // Related
-      const snap = await getDocs(collection(db, "products"));
-      const all = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      setRelated(all.filter((r) => r.category === p.category && r.id !== p.id).slice(0, 4));
-      setLoading(false);
-    };
-    fetchData();
-  }, [id]);
+  const product = products.find((p) => p.id === id) ?? null;
+  const related = product
+    ? products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4)
+    : [];
 
   const handleAdd = () => {
     addToCart(product);
@@ -46,7 +33,7 @@ export default function ProductDetailClient({ params }) {
       ? `${Math.round(product.weight * 1000)} gr`
       : `${product?.weight} kg`;
 
-  if (loading) {
+  if (!loaded) {
     return (
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 gap-10">
@@ -86,7 +73,7 @@ export default function ProductDetailClient({ params }) {
           >
             <ArrowLeft size={14} /> Tüm Ürünler
           </Link>
-          {product?.category && (
+          {product.category && (
             <>
               <span style={{ color: "#E5E0D5" }}>›</span>
               <Link
@@ -112,10 +99,12 @@ export default function ProductDetailClient({ params }) {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
+              quality={80}
+              priority
             />
             {product.isCampaign && (
               <div
-                className="absolute top-4 left-4 px-3 py-1 rounded-lg text-xs font-bold text-white  tracking-wider"
+                className="absolute top-4 left-4 px-3 py-1 rounded-lg text-xs font-bold text-white tracking-wider"
                 style={{ backgroundColor: "#C0392B" }}
               >
                 indirim
@@ -170,7 +159,7 @@ export default function ProductDetailClient({ params }) {
               {product.inStock ? (
                 <button
                   onClick={handleAdd}
-                  className="flex-1 py-4 rounded-2xl font-bold text-sm text-white  tracking-wider flex items-center justify-center gap-4 transition-all duration-200"
+                  className="flex-1 py-4 rounded-2xl font-bold text-sm text-white tracking-wider flex items-center justify-center gap-4 transition-all duration-200"
                   style={{ backgroundColor: added ? "#276227" : "#2B4A1F" }}
                   onMouseEnter={(e) => !added && (e.currentTarget.style.backgroundColor = "#1e3a14")}
                   onMouseLeave={(e) => !added && (e.currentTarget.style.backgroundColor = "#2B4A1F")}
@@ -188,7 +177,7 @@ export default function ProductDetailClient({ params }) {
               )}
               <Link
                 href="/cart"
-                className="py-4 px-6 rounded-2xl font-semibold text-sm text-white text-center  tracking-wider transition-all duration-200"
+                className="py-4 px-6 rounded-2xl font-semibold text-sm text-white text-center tracking-wider transition-all duration-200"
                 style={{ backgroundColor: "#C9963F" }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#A87B2A")}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#C9963F")}
@@ -202,11 +191,7 @@ export default function ProductDetailClient({ params }) {
         {/* Related Products */}
         {related.length > 0 && (
           <div className="mt-16">
-            <h2
-              className="section-title section-title-left text-xl font-semibold mb-8"
-            >
-              Benzer Ürünler
-            </h2>
+            <h2 className="text-xl font-semibold mb-8">Benzer Ürünler</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
               {related.map((p) => (
                 <ProductCard key={p.id} product={p} />

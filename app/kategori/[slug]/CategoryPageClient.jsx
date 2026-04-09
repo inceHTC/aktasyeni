@@ -1,9 +1,8 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { use } from "react";
 import Link from "next/link";
-import { db } from "@/lib/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { useProducts } from "@/context/ProductsContext";
 import ProductCard from "@/components/ProductCard";
 import { ArrowLeft, ChevronRight } from "lucide-react";
 
@@ -25,25 +24,16 @@ const DESCRIPTIONS = {
   "kuru-gida": "Pirinç, mercimek, tarhana, erişte, Biga yöresinden süzme ballar ve mevsim reçelleri.",
 };
 
-// kuru-gida <-> kurugida gibi tire farkını normalize et
 const normalizeSlug = (s) => s?.replace(/-/g, "").toLowerCase();
 
 export default function CategoryPageClient({ params }) {
   const { slug } = use(params);
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { products, loaded } = useProducts();
 
-  useEffect(() => {
-    getDocs(collection(db, "products")).then((snap) => {
-      const all = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      const slugNorm = normalizeSlug(slug);
-      const merged = slugNorm === "kurugida"
-        ? all.filter((p) => normalizeSlug(p.category) === "kurugida" || normalizeSlug(p.category) === "bal")
-        : all.filter((p) => normalizeSlug(p.category) === slugNorm);
-      setProducts(merged);
-      setLoading(false);
-    });
-  }, [slug]);
+  const slugNorm = normalizeSlug(slug);
+  const filtered = slugNorm === "kurugida"
+    ? products.filter((p) => normalizeSlug(p.category) === "kurugida" || normalizeSlug(p.category) === "bal")
+    : products.filter((p) => normalizeSlug(p.category) === slugNorm);
 
   const title = LABELS[slug] ?? slug;
   const desc = DESCRIPTIONS[slug] ?? "";
@@ -53,7 +43,6 @@ export default function CategoryPageClient({ params }) {
       {/* Page Header */}
       <div style={{ backgroundColor: "#1A1A1A", borderBottom: "2px solid #C9963F" }}>
         <div className="container mx-auto px-4 py-6">
-          {/* Breadcrumb */}
           <nav className="flex items-center gap-1.5 text-xs mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
             <Link href="/" className="hover:text-white transition-colors">Ana Sayfa</Link>
             <ChevronRight size={12} />
@@ -69,7 +58,6 @@ export default function CategoryPageClient({ params }) {
       </div>
 
       <div className="container mx-auto px-4 py-10">
-        {/* Back link */}
         <Link
           href="/products"
           className="inline-flex items-center gap-1.5 text-sm mb-8 transition-colors duration-150"
@@ -80,13 +68,13 @@ export default function CategoryPageClient({ params }) {
           <ArrowLeft size={14} /> Tüm Ürünlere Dön
         </Link>
 
-        {loading ? (
+        {!loaded ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="rounded-2xl bg-white animate-pulse" style={{ height: "280px" }} />
             ))}
           </div>
-        ) : products.length === 0 ? (
+        ) : filtered.length === 0 ? (
           <div className="text-center py-24">
             <p className="text-base mb-4" style={{ color: "#9CA3AF" }}>Bu kategoride henüz ürün bulunmuyor.</p>
             <Link
@@ -99,9 +87,9 @@ export default function CategoryPageClient({ params }) {
           </div>
         ) : (
           <>
-            <p className="text-xs mb-6" style={{ color: "#9CA3AF" }}>{products.length} ürün listeleniyor</p>
+            <p className="text-xs mb-6" style={{ color: "#9CA3AF" }}>{filtered.length} ürün listeleniyor</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
-              {products.map((prod) => (
+              {filtered.map((prod) => (
                 <ProductCard key={prod.id} product={prod} />
               ))}
             </div>

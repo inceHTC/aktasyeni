@@ -1,5 +1,6 @@
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { ProductsProvider } from "@/context/ProductsContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
@@ -37,15 +38,17 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/favicon.png" />
       </head>
       <body>
-        <CartProvider>
-          <Navbar />
-          {/* Navbar height offset */}
-          <main className="pt-[102px] min-h-screen">
-            {children}
-          </main>
-          <Footer />
-          <Toaster />
-        </CartProvider>
+        <ProductsProvider>
+          <CartProvider>
+            <Navbar />
+            {/* Navbar height offset */}
+            <main className="pt-[102px] min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <Toaster />
+          </CartProvider>
+        </ProductsProvider>
       </body>
     </html>
   );

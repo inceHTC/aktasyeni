@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { db } from "@/lib/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { useProducts } from "@/context/ProductsContext";
 import ProductCard from "@/components/ProductCard";
+import { useState } from "react";
 import { Search, ChevronRight } from "lucide-react";
 
 const CATEGORY_LABELS = {
@@ -20,17 +19,9 @@ const CATEGORY_LABELS = {
 const normalizeSlug = (s) => s?.replace(/-/g, "").toLowerCase();
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState([]);
+  const { products, loaded } = useProducts();
   const [category, setCategory] = useState("all");
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getDocs(collection(db, "products")).then((snap) => {
-      setProducts(snap.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-      setLoading(false);
-    });
-  }, []);
 
   const filtered = products.filter((p) => {
     const catNorm = normalizeSlug(p.category);
@@ -95,7 +86,7 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        {loading ? (
+        {!loaded ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="rounded-2xl bg-white animate-pulse" style={{ height: "280px" }} />
