@@ -15,14 +15,7 @@ const LABELS = {
   "kuru-gida": "Kuru Gıda & Bal",
 };
 
-const DESCRIPTIONS = {
-  peynir: "Ezine'den Mihaliç'e, köy peynirinden tulum peynirine — doğal ve katkısız peynir çeşitlerimiz.",
-  zeytin: "Edremit'ten Gemlik'e, siyahtan yeşile — her damak zevkine uygun yöresel zeytinler.",
-  zeytinyagi: "Soğuk sıkım, naturel sızma — Çanakkale zeytinlerinin en saf hali.",
-  tereyagi: "Yöresel inek sütünden üretilen, katkısız doğal tereyağı.",
-  sarkuteri: "Kendi üretimimiz olan doğal sucuk ve seçkin şarküteri ürünleri.",
-  "kuru-gida": "Pirinç, mercimek, tarhana, erişte, Biga yöresinden süzme ballar ve mevsim reçelleri.",
-};
+
 
 const normalizeSlug = (s) => s?.replace(/-/g, "").toLowerCase();
 
@@ -36,24 +29,28 @@ export default function CategoryPageClient({ params }) {
     : products.filter((p) => normalizeSlug(p.category) === slugNorm);
 
   const title = LABELS[slug] ?? slug;
-  const desc = DESCRIPTIONS[slug] ?? "";
+ 
 
   return (
     <div style={{ backgroundColor: "#FAFAF8", minHeight: "100vh" }}>
       {/* Page Header */}
       <div style={{ backgroundColor: "#1A1A1A", borderBottom: "2px solid #C9963F" }}>
         <div className="container mx-auto px-4 py-6">
-          <nav className="flex items-center gap-1.5 text-xs mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
+          {/* Üstteki küçük yol yazıları - Rengi açık gri yapıldı */}
+          <nav className="flex items-center gap-1.5 text-xs mb-3" style={{ color: "#9CA3AF" }}>
             <Link href="/" className="hover:text-white transition-colors">Ana Sayfa</Link>
             <ChevronRight size={12} />
             <Link href="/products" className="hover:text-white transition-colors">Ürünler</Link>
             <ChevronRight size={12} />
-            <span style={{ color: "#C9963F" }}>{title}</span>
+            <span>{title}</span>
           </nav>
-          <h1 className="text-2xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+
+          {/* Ana Başlık - Rengi Gold yapıldı */}
+          <h1 className="text-2xl font-bold" style={{ color: "#C9963F", fontFamily: "'Playfair Display', serif" }}>
             {title}
           </h1>
-          {desc && <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{desc}</p>}
+
+       
         </div>
       </div>
 
