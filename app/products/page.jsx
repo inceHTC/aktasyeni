@@ -39,17 +39,19 @@ export default function ProductsPage() {
       {/* Header */}
       <div style={{ backgroundColor: "#1A1A1A", borderBottom: "2px solid #C9963F" }}>
         <div className="container mx-auto px-4 py-6">
-          <nav className="flex items-center gap-1.5 text-xs mb-3" style={{ color: "rgba(255,255,255,0.45)" }}>
+          {/* Navigasyon Yolu - Gri yapıldı */}
+          <nav className="flex items-center gap-1.5 text-xs mb-3" style={{ color: "#9CA3AF" }}>
             <Link href="/" className="hover:text-white transition-colors">Ana Sayfa</Link>
             <ChevronRight size={12} />
-            <span style={{ color: "#C9963F" }}>Tüm Ürünler</span>
+            <span>Tüm Ürünler</span>
           </nav>
-          <h1 className="text-2xl font-bold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+
+          {/* Ana Başlık - Gold yapıldı */}
+          <h1 className="text-2xl font-bold" style={{ color: "#C9963F", fontFamily: "'Playfair Display', serif" }}>
             Tüm Ürünler
           </h1>
-          <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
-            Biga&apos;dan taze ve doğal lezzetler
-          </p>
+
+      
         </div>
       </div>
 
