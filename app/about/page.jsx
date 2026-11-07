@@ -60,7 +60,7 @@ export default function AboutPage() {
                   {"En temel ürünümüz olan "}
                  Ezine beyaz peynirini,
                   {" Çanakkale yöresinin taze inek sütünden, geleneksel yöntemlerle kendi üretim hattımızda işliyoruz.  "}
-                     <br /> Özel baharatı ve taze katkısız etiyle ürettiğimiz doğal sucığumuz
+                     <br /> Özel baharatı ve taze katkısız etiyle ürettiğimiz doğal sucuğumuz
                   {" da tamamen kendi firmamızın ürünüdür — içinde ne var, ne yok, hepsini biz kontrol ediyoruz."}
                 </p>
                 <p>{"Peynir, sucuk ve tereyağının yanı sıra Biga ve çevre yörelerden özenle temin ettiğimiz zeytinler, sızma zeytinyağları, çiçek ballarını da müşterilerimize sunuyoruz."}</p>

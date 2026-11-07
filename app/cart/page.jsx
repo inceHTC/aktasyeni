@@ -62,7 +62,6 @@ export default function CartPage() {
       `Kargo: ${shippingFee} TL\n` +
       `Genel Toplam: ${totalPrice + shippingFee} TL\n\n` +
       `Adı Soyadı: ${fullName}\n` +
-      `TC No: ${tcNo}\n` +
       `Adres: ${fullAddress}`;
 
     window.open(`https://wa.me/905374835469?text=${encodeURIComponent(message)}`, "_blank");
@@ -224,7 +223,6 @@ export default function CartPage() {
 
               {[
                 { label: "Ad Soyad", value: fullName, onChange: setFullName, type: "text" },
-                { label: "T.C. Kimlik No", value: tcNo, onChange: (v) => setTcNo(v.replace(/\D/g, "").slice(0, 11)), type: "text", placeholder: "Fatura için gereklidir" },
               ].map(({ label, value, onChange, type, placeholder }) => (
                 <div key={label}>
                   <label className="block text-xs font-medium mb-1" style={{ color: "#6B7280" }}>{label}</label>
