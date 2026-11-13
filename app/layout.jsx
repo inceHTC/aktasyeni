@@ -16,7 +16,10 @@ export const metadata = {
     canonical: "https://www.aktaspeynirbiga.com.tr",
   },
   icons: {
-    icon: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
     apple: "/favicon.png",
   },
   openGraph: {
@@ -33,10 +36,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
-      <head>
-        <link rel="icon" href="/favicon.png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
-      </head>
       <body>
         <ProductsProvider>
           <CartProvider>
