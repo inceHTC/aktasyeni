@@ -52,13 +52,13 @@ const sections = [
   {
     title: "5. Sipariş İptali",
     body: [
-      "Henüz kargoya verilmemiş siparişlerinizi, WhatsApp hattımız (0537 483 54 69) üzerinden bize sipariş bilgilerinizle birlikte yazarak ücretsiz olarak iptal edebilirsiniz. İptal talebiniz onaylandığında size WhatsApp üzerinden bilgi verilir. Kargoya verilmiş siparişler, gıda ürünlerinin niteliği gereği iptal edilemez; ancak ürün kargo kaynaklı hasarlı, bozulmuş veya yanlış ulaşırsa yukarıdaki iade koşulları geçerlidir.",
+      "Henüz kargoya verilmemiş siparişlerinizi, WhatsApp hattımız (0537 483 54 69) üzerinden bize sipariş bilgilerinizle birlikte yazarak ücretsiz olarak iptal edebilirsiniz. Kargoya verilmiş siparişler, gıda ürünlerinin niteliği gereği iptal edilemez; ancak ürün kargo kaynaklı hasarlı, bozulmuş veya yanlış ulaşırsa yukarıdaki iade koşulları geçerlidir.",
     ],
   },
   {
     title: "6. Para İadesi",
     body: [
-      "Sitemizde ödemeler banka havalesi / EFT ile IBAN hesabımıza yapılmaktadır. Onaylanan iade ve iptal taleplerinde ücret, onay tarihinden itibaren en geç 3 iş günü içinde müşteriye havale / EFT yoluyla geri gönderilir.",
+      "Onaylanan iade ve iptal taleplerinde ücret, onay tarihinden itibaren en geç 3 iş günü içinde müşteriye havale / EFT yoluyla iade edilir.",
     ],
   },
 ];
