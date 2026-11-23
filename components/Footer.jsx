@@ -13,6 +13,7 @@ const quickLinks = [
   { name: "Hakkımızda", path: "/about" },
   { name: "İletişim", path: "/contact" },
   { name: "Kargo Bilgisi", path: "/kargo" },
+  { name: "İade ve İptal Politikası", path: "/iade-politikasi" },
 ];
 
 const featuredCategories = [

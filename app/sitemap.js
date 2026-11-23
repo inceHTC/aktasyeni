@@ -11,6 +11,7 @@ export default async function sitemap() {
     { url: `${base}/about`, priority: 0.7, changeFrequency: "monthly" },
     { url: `${base}/contact`, priority: 0.7, changeFrequency: "monthly" },
     { url: `${base}/kargo`, priority: 0.5, changeFrequency: "monthly" },
+    { url: `${base}/iade-politikasi`, priority: 0.5, changeFrequency: "monthly" },
     { url: `${base}/kategori/peynir`, priority: 0.85, changeFrequency: "weekly" },
     { url: `${base}/kategori/zeytin`, priority: 0.85, changeFrequency: "weekly" },
     { url: `${base}/kategori/zeytinyagi`, priority: 0.85, changeFrequency: "weekly" },
