@@ -58,7 +58,7 @@ const sections = [
   {
     title: "6. Para İadesi",
     body: [
-      "Onaylanan iade ve iptal taleplerinde ödeme, onay tarihinden itibaren en geç 14 gün içinde ödemenin yapıldığı yönteme (kredi kartı / banka kartı) iade edilir. Kredi kartına yapılan iadelerin hesabınıza yansıma süresi bankanıza bağlı olarak değişebilir.",
+      "Sitemizde ödemeler banka havalesi / EFT ile IBAN hesabımıza yapılmaktadır. Onaylanan iade ve iptal taleplerinde ücret, onay tarihinden itibaren en geç 3 iş günü içinde müşterinin bildireceği IBAN numarasına havale / EFT yoluyla geri gönderilir. İade için IBAN bilgisinin, hesap sahibinin adı ve soyadıyla birlikte WhatsApp hattımız üzerinden iletilmesi gerekmektedir.",
     ],
   },
 ];
