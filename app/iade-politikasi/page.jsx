@@ -58,7 +58,7 @@ const sections = [
   {
     title: "6. Para İadesi",
     body: [
-      "Sitemizde ödemeler banka havalesi / EFT ile IBAN hesabımıza yapılmaktadır. Onaylanan iade ve iptal taleplerinde ücret, onay tarihinden itibaren en geç 3 iş günü içinde müşterinin bildireceği IBAN numarasına havale / EFT yoluyla geri gönderilir. İade için IBAN bilgisinin, hesap sahibinin adı ve soyadıyla birlikte WhatsApp hattımız üzerinden iletilmesi gerekmektedir.",
+      "Sitemizde ödemeler banka havalesi / EFT ile IBAN hesabımıza yapılmaktadır. Onaylanan iade ve iptal taleplerinde ücret, onay tarihinden itibaren en geç 3 iş günü içinde müşteriye havale / EFT yoluyla geri gönderilir.",
     ],
   },
 ];
